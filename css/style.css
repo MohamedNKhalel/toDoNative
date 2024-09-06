@@ -1,0 +1,60 @@
+.main{
+    min-height: 100vh;
+}
+.my-card{
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.my-card .footer{
+    margin-top: auto;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.fa-list-dots{
+    font-size: 20px;
+}
+textarea{
+    resize: none;
+}
+.add-task-layout{
+    background-color: rgba(0,0,0,.5);
+}
+#notification{
+    position: fixed;
+    padding: 10px;
+    top: 20px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all .5s;
+    border: solid 3px transparent;
+
+}
+#notification:hover{
+    background-color: transparent !important;
+    border: solid 3px #157347;
+    color: #157347 !important;
+}
+#notification:hover i{
+    color: #157347 !important;
+}
+.my-card .footer{
+    transition: all .3s ease;
+}
+.my-card .footer:hover{
+    background-color: #157347 !important;
+    color: white;
+}
+.task-row{
+    transition: all .5s ease;
+}
+@media screen and (max-width:768px) {
+    table{
+        font-size: 12px;
+    }
+    .add-form{
+        width: 90% !important;
+    }
+}

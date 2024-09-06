@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To DO</title>
+    <meta name="description" content="to do list with javascript">
+    <meta name="author" content="Mohamed Khalel">
+    <link rel="shortcut icon" href="assets/images/to-do.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <section class="main bg-body-tertiary">
+        <div>
+            <p id="notification" class="rounded-3 text-white  shadow translate-middle-x start-50"></p>
+        </div>
+        <div class="container pt-3">
+            <button type="button"  class="btn btn-primary main-btn d-block ms-auto">Add Task</button>
+            <div  class="main-tasks mt-4">
+                <div class="row g-4 task-row">
+                    
+                </div>
+            </div>
+            <div class="tasks-table mt-4 p-4 shadow bg-white">
+                <button id="clearTableBtn" type="button" class="btn btn-outline-dark d-block ms-auto ">Clear Data</button>
+                <table id="tableTasks" class="table text-center">
+                    <thead >
+                        <th>Num</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody class="table-content">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <section class="add-task-layout position-fixed top-0 bottom-0 start-0 end-0 d-flex justify-content-center align-items-center d-none">
+        <div class="add-form bg-white w-50 p-3 rounded-2 shadow">
+            <div class="mb-3 text-end">
+                <i class="fa fa-xmark-circle cursor-pointer fa-xl "></i>
+            </div>
+            <div>
+                <input class="form-control" placeholder="please enter title" id="titleInput" type="text">
+            </div>
+            <div class="my-3">
+                <textarea class="form-control" placeholder="enter description" rows="5" id="descInput"></textarea>
+            </div>
+            <button disabled onclick="addTask()" class="btn btn-success d-block m-auto" id="addBtn" type="button">Add</button>
+            <button   onclick="updateTask()" class="btn btn-warning d-block m-auto d-none" id="updateBtn" type="button">Update</button>
+        </div>
+    </section>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
