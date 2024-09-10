@@ -27,14 +27,16 @@
             <div class="tasks-table mt-4 p-4 shadow bg-white ">
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="gap-4 d-flex justify-content-between position-relative">
-                        <i class="fas fa-sort position-absolute top-50 translate-middle-y"></i>
-                        <select id="statusSearch" title="staus" class="form-control">
-                            <option selected disabled>Filter status </option>
-                            <option value="all">All</option>
-                            <option value="running">Running</option>
-                            <option value="completed">Completed</option>
-                            <option value="deleted">Deleted</option>
-                        </select>
+                        <div class="position-relative">
+                            <select id="statusSearch" title="staus" class="form-control">
+                                <option selected disabled>Filter status </option>
+                                <option value="all">All</option>
+                                <option value="running">Running</option>
+                                <option value="completed">Completed</option>
+                                <option value="deleted">Deleted</option>
+                            </select>
+                            <i class="fas fa-sort position-absolute top-50 translate-middle-y"></i>
+                        </div>
                         <input id="searchInput" class="form-control w-50" type="text" placeholder="Filter title...">
                     </div>
                     <div>

@@ -62,7 +62,7 @@ textarea{
     width: 350px !important;
 }
 .fa-sort{
-    left: 20%;
+    right: 10px;
     font-size: 20px;
 }
 @media screen and (max-width:768px) {
@@ -75,7 +75,14 @@ textarea{
     #notification{
         font-size: 12px;
     }
-    #statusSearch option{
+    #statusSearch,#searchInput{
+        width: 100px !important;
+        font-size: 11px;
+    }
+    #statusSearch option {
         font-size: 12px !important;
+    }
+    #clearTableBtn{
+        font-size: 10px;
     }
 }
