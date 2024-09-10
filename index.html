@@ -24,8 +24,23 @@
                     
                 </div>
             </div>
-            <div class="tasks-table mt-4 p-4 shadow bg-white">
-                <button id="clearTableBtn" type="button" class="btn btn-outline-dark d-block ms-auto ">Clear Data</button>
+            <div class="tasks-table mt-4 p-4 shadow bg-white ">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="gap-4 d-flex justify-content-between position-relative">
+                        <i class="fas fa-sort position-absolute top-50 translate-middle-y"></i>
+                        <select id="statusSearch" title="staus" class="form-control">
+                            <option selected disabled>Filter status </option>
+                            <option value="all">All</option>
+                            <option value="running">Running</option>
+                            <option value="completed">Completed</option>
+                            <option value="deleted">Deleted</option>
+                        </select>
+                        <input id="searchInput" class="form-control w-50" type="text" placeholder="Filter title...">
+                    </div>
+                    <div>
+                        <button id="clearTableBtn" type="button" class="btn btn-outline-dark d-block ms-auto ">Clear Data</button>
+                    </div>
+                </div>
                 <table id="tableTasks" class="table text-center">
                     <thead >
                         <th>Num</th>

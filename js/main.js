@@ -12,6 +12,9 @@ let tasks = [];
 let tableTasks = [];
 let clearTableBtn = document.getElementById('clearTableBtn');
 let notification = document.getElementById('notification');
+let statusSearch =  document.getElementById('statusSearch');
+let searchInput = document.getElementById('searchInput');
+
 // start cheking the localStorage not empty so that we can benefit from the resistant data 
 if(localStorage.getItem('tasks') !=  null ){
     tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -21,8 +24,7 @@ if(localStorage.getItem('tasks') !=  null ){
 if(localStorage.getItem('tableTasks') != null){
     tableTasks = JSON.parse(localStorage.getItem('tableTasks'));
     idCounter = JSON.parse(localStorage.getItem('taskId'))
-    displayTasksTable();
-    console.log(idCounter);
+    displayTasksTable(tableTasks);
 }
 //end cheking the localStorage not empty so that we can benefit from the resistant data 
 
@@ -63,7 +65,9 @@ function clearTable(){
                     table.deleteRow(table.rows.length-1);
                 }
                 console.log(table.rows.length-1);
-                
+                tableTasks = [];
+                tasks = [];
+                idCounter = 0;
                 localStorage.removeItem('taskId');
                 localStorage.removeItem('tableTasks');
             }
@@ -81,7 +85,6 @@ function checkForm(){
         return true
     }
     else{
-        console.log("none");
         addBtn.disabled = true;
         return false;
     }
@@ -105,10 +108,12 @@ function addTask(){
             date:new Date().toLocaleString(),
             status:"running",
             id:idCounter,
-            running:true
         };
         tasks.push(task);
         tableTasks.push(task);
+        displayTasks();
+        displayTasksTable(tableTasks);
+        closeForm();
         idCounter++;
         notification.classList.add('bg-success');
         notification.innerHTML = `<i class="fas fa-check-circle fa-xl text-white pe-2"></i> Task added successfully`;
@@ -117,29 +122,26 @@ function addTask(){
             notification.classList.remove('bg-success');
             notification.style.opacity = 0;
         }, 3000);
+        
         localStorage.setItem('tasks',JSON.stringify(tasks));
         localStorage.setItem('tableTasks',JSON.stringify(tableTasks));
         localStorage.setItem('taskId' , JSON.stringify(idCounter))
-        console.log(tableTasks);
-        console.log(tasks);
-        displayTasks();
-        displayTasksTable();
-        closeForm();
+        
         addBtn.disabled =true;
     }
 }
 // end function to add tasks to the localStorage and the array of the tasks and display the tasks and table content 
 
 // start dynamic table to display tasks 
-function displayTasksTable(){
+function displayTasksTable(arr){
     let box = ``;
-    for(let i = 0 ; i < tableTasks.length ; i++){
+    for(let i = 0 ; i < arr.length ; i++){
         box+=`
         <tr>
             <td class="text-muted fw-bold">${i+1}</td>
-            <td class="text-uppercase">${tableTasks[i].title}</td>
-            <td>${tableTasks[i].date}</td>
-            <td class="text-uppercase">${tableTasks[i].status}</td>
+            <td class="text-uppercase">${arr[i].title}</td>
+            <td>${arr[i].date}</td>
+            <td class="text-uppercase">${arr[i].status}</td>
         </tr>
         `
     }
@@ -203,7 +205,7 @@ function completeTask(id,index){
     }, 3000);
     tasks.splice(index , 1);
     displayTasks();
-    displayTasksTable();
+    displayTasksTable(tableTasks);
     localStorage.setItem('tasks',JSON.stringify(tasks));
     localStorage.setItem('tableTasks',JSON.stringify(tableTasks));
 }
@@ -224,7 +226,7 @@ function deleteTask(index,id){
     localStorage.setItem('tasks',JSON.stringify(tasks))
     localStorage.setItem('tableTasks',JSON.stringify(tableTasks))
     displayTasks()
-    displayTasksTable()
+    displayTasksTable(tableTasks)
 }
 //end function to delete tasks from the main conatiner 
 
@@ -259,3 +261,31 @@ function updateTask(){
 }
 // end function=> after openning the modal press the confirmation button to submit update 
 
+
+
+// start search function 
+statusSearch.addEventListener('change',()=>{
+    search(statusSearch.value);
+})
+searchInput.addEventListener('keyup',()=>{
+    search(searchInput.value)
+})
+function search(term){
+    let matchedArray = []
+    if(term == 'all'){
+        displayTasksTable(tableTasks)
+    }
+    else{
+        for(let i = 0 ; i < tableTasks.length ; i++){
+            if(tableTasks[i].status.toLowerCase().includes(term.toLowerCase()) == true){
+                matchedArray.push(tableTasks[i])
+            }
+            else if(tableTasks[i].title.toLowerCase().includes(term.toLowerCase()) == true){
+                matchedArray.push(tableTasks[i])
+            }
+        }
+        displayTasksTable(matchedArray)
+    }
+}
+// searchTitle()
+// END search function 

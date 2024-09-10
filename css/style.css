@@ -7,6 +7,10 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.my-card .body{
+    overflow: auto;
+    height: 120px;
+}
 .my-card .footer{
     margin-top: auto;
 }
@@ -30,6 +34,7 @@ textarea{
     opacity: 0;
     transition: all .5s;
     border: solid 3px transparent;
+    z-index: 88888;
 
 }
 #notification:hover{
@@ -50,11 +55,27 @@ textarea{
 .task-row{
     transition: all .5s ease;
 }
+#statusSearch{
+    width: 150px;
+}
+#searchInput{
+    width: 350px !important;
+}
+.fa-sort{
+    left: 20%;
+    font-size: 20px;
+}
 @media screen and (max-width:768px) {
     table{
         font-size: 12px;
     }
     .add-form{
         width: 90% !important;
+    }
+    #notification{
+        font-size: 12px;
+    }
+    #statusSearch option{
+        font-size: 12px !important;
     }
 }
